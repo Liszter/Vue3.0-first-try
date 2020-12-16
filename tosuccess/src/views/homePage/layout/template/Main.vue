@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import { getCurrentInstance } from 'vue'
 export default {
-
+  name: 'mainPage',
+  setup() {
+    const { ctx } = getCurrentInstance()
+    console.log(ctx);
+  }
 }
 </script>
 

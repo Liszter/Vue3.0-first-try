@@ -7,16 +7,19 @@
         </li>
       </template>
     </ul>
+
+
+    <!-- menu-tree -->
   </div>
 </template>
 <script>
 import { getCurrentInstance } from 'vue'
-  import { ref, computed, reactive, toRefs, onMounted, watch } from 'vue' //ref接收一个参数 返回一个响应式对象  //computed是一个函数接收一个参数是函数
+  import { ref, reactive  } from 'vue' //ref接收一个参数 返回一个响应式对象  //computed是一个函数接收一个参数是函数
 
 export default {
-  setup( props, context ) {
+  setup( ) {
     const { ctx } = getCurrentInstance()
-    console.log(ctx.$router.options.routes);
+    // console.log(ctx.$router.options.routes);
     // 菜单数组
     const navList = reactive(ctx.$router.options.routes)
     const isActive = ref('2')
@@ -32,8 +35,6 @@ export default {
       }
       isActive.value = index
     }
-    
-    
     return {
       navList,
       isActive,
@@ -55,7 +56,7 @@ export default {
     background-color: #344a5f ;
   }
   .is-active {
-    color: seagreen;
+    color: #42b983;
     background-color: rgba(0, 0, 0, 0.1);
     &::selection {
       background-color: transparent;

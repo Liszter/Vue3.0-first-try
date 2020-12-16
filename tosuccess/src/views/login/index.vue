@@ -7,18 +7,18 @@
 </template>
 
 <script>
+import { getCurrentInstance } from 'vue';
 import { reactive, ref, isRef, toRefs, onMounted } from 'vue';
 export default {
-
-  setup(props, {refs, root}) {
-
-    const toHome =()=>{
-      console.log(1);
-      root.router.push({
+  setup(props, context) {
+  const { ctx } = getCurrentInstance()
+  // route
+  const router = ctx.$router
+  const toHome =()=>{
+      router.push({
         name: 'homePage'
       })
     }
-    console.log(111, root);
     return {
       toHome
     }
