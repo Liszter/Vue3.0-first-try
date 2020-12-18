@@ -5231,6 +5231,11 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
+jsencrypt@^3.0.0-rc.1:
+  version "3.0.0-rc.1"
+  resolved "https://registry.npm.taobao.org/jsencrypt/download/jsencrypt-3.0.0-rc.1.tgz#0e0a4744ba43cc557fb5cf62fe8646bceb561b1c"
+  integrity sha1-DgpHRLpDzFV/tc9i/oZGvOtWGxw=
+
 jsesc@^2.5.1:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
@@ -5804,6 +5809,11 @@ mixin-deep@^1.2.0:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+mock.js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/mock.js/download/mock.js-0.2.0.tgz#c0d6ee5e58c7b6902c3030462c1eff3bd33f8bdd"
+  integrity sha1-wNbuXljHtpAsMDBGLB7/O9M/i90=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -7553,6 +7563,11 @@ schema-utils@^3.0.0:
     "@types/json-schema" "^7.0.6"
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
+
+screenfull@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.npm.taobao.org/screenfull/download/screenfull-5.0.2.tgz#b9acdcf1ec676a948674df5cd0ff66b902b0bed7"
+  integrity sha1-uazc8exnapSGdN9c0P9muQKwvtc=
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
