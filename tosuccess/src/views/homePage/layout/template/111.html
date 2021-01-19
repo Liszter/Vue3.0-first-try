@@ -1,140 +1,305 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Tree View</title>
-    <script src="https://unpkg.com/vue"></script>
-    <!-- item template -->
-    <script type="text/x-template" id="item-template">
-      <li>
-        <div
-          :class="{bold: isFolder}"
-          @click="toggle"
-          @dblclick="makeFolder">
-          {{ item.name }}
-        </div>
+<html lang="en">
+ 
+<head>
+  <meta charset="UTF-8">
+</head>
+ 
+<body>
+  
+</body>
+<script>
+
+// function after(times, callback) {
+//   let arr = []
+
+//   return function(val) {
+//     console.log(val);
+//     arr.push(val)
+//     if (--times == 0) {
+//       callback(arr)
+//     }
+//   }
+// }
+
+// let newFn = after(3, function(res) {
+//   console.log(res);
+// })
 
 
-        <ul v-show="isOpen" v-if="isFolder">
-          <tree-item
-            class="item"
-            v-for="(child, index) in item.children"
-            :key="index"
-            :item="child"
-            @make-folder="$emit('make-folder', $event)"
-            @add-item="$emit('add-item', $event)"
-          ></tree-item>
-          <li class="add" @click="$emit('add-item', item)">+</li>
-        </ul>
-      </li>
-    </script>
+// function fn1 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '123'
+//       }
+//     }
+
+//     newFn(res)
+//   }, 2000)
+// }
+
+// function fn2 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '234'
+//       }
+//     }
+
+//     newFn(res)
+//   }, 1000)
+// }
+
+// function fn3 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '456'
+//       }
+//     }
+
+//     newFn(res)
+//   }, 3000)
+// }
+
+ 
 
 
-  </head>
-  <body>
-    <!-- the demo root element -->
-    <ul id="demo">
-      <tree-item
-        class="item"
-        :item="treeData"
-        @make-folder="makeFolder"
-        @add-item="addItem"
-      ></tree-item>
-    </ul>
+//  fn1()
+//  fn2()
+//  fn3()
 
-    <script>
-      // demo data
-      var treeData = {
-        name: "My Tree",
-        children: [
-          { name: "hello" },
-          { name: "wat" },
-          {
-            name: "child folder",
-            children: [
-              {
-                name: "child folder",
-                children: [{ name: "hello" }, { name: "wat" }]
-              },
-              { name: "hello" },
-              { name: "wat" },
-              {
-                name: "child folder",
-                children: [{ name: "hello" }, { name: "wat" }]
-              }
-            ]
-          }
-        ]
-      };
 
-      // define the tree-item component
-      Vue.component("tree-item", {
-        template: "#item-template",
-        props: {
-          item: Object
-        },
-        data: function () {
-          return {
-            isOpen: false
-          };
-        },
-        computed: {
-          isFolder: function () {
-            return this.item.children && this.item.children.length;
-          }
-        },
-        methods: {
-          toggle: function () {
-            if (this.isFolder) {
-              console.log(this);
-              this.isOpen = !this.isOpen;
-            }
-          },
-          makeFolder: function () {
-            if (!this.isFolder) {
-              this.$emit("make-folder", this.item);
-              this.isOpen = true;
-            }
-          }
+
+
+
+// 发布订阅
+
+// function Events () {
+//   // 存储所有的回调和结果
+//   this.callbacks = []
+
+//   this.results = []
+// }
+
+// Events.prototype.on = function (callback) { // 订阅
+//   this.callbacks.push(callback)
+// }
+
+// Events.prototype.emit = function (data) { // 发布
+//   this.results.push(data)
+//   this.callbacks.forEach(c=>c(this.results))
+// }
+
+// let e = new Events();
+
+// e.on(function (arr) {
+//   if (arr.length === 3) {
+//     console.log(arr);
+//   }
+// })
+
+
+// function fn1 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '123'
+//       }
+//     }
+//     e.emit(res)
+//   }, 2000)
+// }
+
+// function fn2 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '234'
+//       }
+//     }
+//     e.emit(res)
+
+//   }, 1000)
+// }
+
+// function fn3 () {
+//   setTimeout(function() {
+//     let res = {
+//       code: '200',
+//       data: {
+//         name: '456'
+//       }
+//     }
+//     e.emit(res)
+
+//   }, 3000)
+// }
+
+// fn1()
+// fn2()
+// fn3()
+
+
+
+
+// 观察者模式   有观察者和被观察者   相当于 烟雾报警器和厨房   厨房冒烟了  报警器就响了
+
+
+// 被观察者
+// class Subject {
+//   constructor () {
+//     this.name = name
+//     this.observers = [] // 被观察者 放到观察者中
+//     this.state = '1'
+//   }
+//   // 被观察者 要提供一个接受观察者的方法
+//   attach (observer) {
+//     this.observers.push(observer)  // 存放所有的观察者
+//   }
+//   setState(newState) {  // 更改被观察者的状态
+//     this.state = newState
+//     // 
+//     this.observers.forEach(o=>o.update(newState))
+//   }
+// }
+
+// class Observer{
+//   constructor(name) {
+//     this.name = name
+//   }
+//   update(newState) { // 通知所有的观察者状态更新了
+//     console.log(this.name, newState);
+//   } 
+// }
+
+// let sub = new Subject('小宝宝')
+// let o1 = new Observer('我')
+// let o2 = new Observer('我1')
+// let o3 = new Observer('我2')
+
+// sub.attach(o1)
+// sub.attach(o2)
+
+// setTimeout(function () { 
+// sub.setState('2')
+
+//  }, 2000)
+//  setTimeout(function () { 
+// sub.setState('1')
+
+//  }, 2000)
+
+
+
+
+
+// 发布订阅模式
+// 1. 定义一个事件中心
+
+// function Events () {
+//   this.callbacks = []
+//   this.results = []
+// }
+
+// // 订阅事件 on
+// Events.prototype.on = function (callback) {
+//   this.callbacks.push(callback)
+//   // 保存
+// }
+// // 发布事件 emit
+// Events.prototype.emit = function (res) {
+  
+//   // 保存res
+//   this.results.push(res)
+
+//   // 触发一下 事件中心 通知一下
+//   this.callbacks.forEach(element => {
+//     element(this.results)
+//   });
+// }
+
+// let e = new Events()
+
+// e.on(function (arr) {
+//   if (arr.length === 3) {
+//     console.log(arr)
+//   }
+// })
+
+
+// function fn1() {
+//   setTimeout(function () { 
+//     let res = {
+//       code: 200,
+//       message: 'message 1'
+//     }
+//     e.emit(res)
+//   }, 2000)
+// }
+
+// function fn2() {
+//   setTimeout(function () { 
+//     let res = {
+//       code: 200,
+//       message: 'message 2'
+//     }
+//     e.emit(res)
+//   }, 3000)
+// }
+
+
+// function fn3() {
+//   setTimeout(function () { 
+//     let res = {
+//       code: 200,
+//       message: 'message 3'
+//     }
+//     e.emit(res)
+//   }, 3000)
+// }
+
+
+
+
+// fn1()
+// fn2()
+// fn3()
+
+
+
+let authcode = ''
+function getAppid(callback) {
+ 	setTimeout(function() {
+        let res = {
+            appid: '123456'
         }
-      });
 
-      // boot up the demo
-      var demo = new Vue({
-        el: "#demo",
-        data: {
-          treeData: treeData
-        },
-        methods: {
-          makeFolder: function (item) {
-            Vue.set(item, "children", []);
-            this.addItem(item);
-          },
-          addItem: function (item) {
-            item.children.push({
-              name: "new stuff"
-            });
-          }
+        console.log(123123, res)
+        callback(res.appid)
+    }, 2000)   
+}
+
+function getAuthCode (appid) {
+
+    setTimeout(function () {
+        let res = {
+            authcode: appid + 'abc'
         }
-      });
-    </script>
-  </body>
+        // 获取到
+        console.log(res)
+    })
+}
+
+getAppid(getAuthCode)
+// 观察者模式
+// 被观察者
+</script>
+ 
 </html>
-
-<style>
-  body {
-    font-family: Menlo, Consolas, monospace;
-    color: #444;
-  }
-  .item {
-    cursor: pointer;
-  }
-  .bold {
-    font-weight: bold;
-  }
-  ul {
-    padding-left: 1em;
-    line-height: 1.5em;
-    list-style-type: dot;
-  }
-</style>

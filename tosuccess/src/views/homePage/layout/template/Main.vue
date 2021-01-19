@@ -1,70 +1,79 @@
 <template>
-  <div id="main-wrap">
-
-    <h1 id="ccc">1123123</h1>
-
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-     <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1>1123123</h1>
-    <h1 id="ddd">1123123</h1>
-    <a href="#ccc">111111111</a>
+  <div id="main-wrap" ref="showPage">
+    <router-view/>
+    <div class="to-top" v-show="isShow" @click="toTop"></div>
   </div>
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, ref } from "vue";
 export default {
-  name: 'mainPage',
+  name: "mainPage",
   setup() {
-    const { ctx } = getCurrentInstance()
-    console.log(ctx);
-  }
-}
+    // dom节点
+    const showPage = ref(null);
+
+    const { ctx } = getCurrentInstance();
+
+    const toTop = () => {
+      // showPage.value.scrollTop = showPage.value.scrollHeight;
+      showPage.value.scrollTop = 0
+    };
+    let isShow = ref(false);
+
+    
+    const handleScroll = () => {
+      // 视口高度
+      let boxVh = showPage.value.offsetHeight
+      // dom 总高度
+      let allHeight = showPage.value.scrollHeight
+      if (showPage.value.scrollTop > 0) {
+        isShow.value = true
+      } else {
+        isShow.value = false
+      }
+    };
+
+    const handleScrollSetTime = () => {
+      setTimeout(handleScroll, 1000)
+    }
+
+
+    window.addEventListener("scroll", handleScrollSetTime, true); // 监听（绑定）滚轮滚动事件
+
+    return {
+      showPage,
+      toTop,
+      isShow,
+      handleScroll,
+      handleScrollSetTime
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/index.scss';
+@import "@/styles/index.scss";
 
-  #main-wrap {
-    position: fixed;
-    overflow: auto;
-    top: 48px;
-    left: $nav-width;
-    bottom: 0;
-    right: 0;
-    border-top: 25px solid #eee;
-    border-left: 25px solid #eee;
-    border-bottom: 25px solid #eee;
-    background-color: #fff;
-  }
-
+#main-wrap {
+  position: fixed;
+  overflow: auto;
+  top: 48px;
+  left: $nav-width;
+  bottom: 0;
+  right: 0;
+  border-top: 25px solid #eee;
+  border-left: 25px solid #eee;
+  border-bottom: 25px solid #eee;
+  background-color: #fff;
+}
+.to-top {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  border-top: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+  border-bottom: solid 20px #008cff;
+}
 </style>

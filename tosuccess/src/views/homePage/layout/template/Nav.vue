@@ -1,60 +1,53 @@
 <template>
-  <!-- <div id="nav-wrap" :style="{ background: theme }"> -->
   <div id="nav-wrap">
     <div class="logo"></div>
     <ul>
-      <template v-for="(firstMenu, index) in navList">
-        <li
-          :key="index"
-          v-if="!firstMenu.isHidden"
-          @click="changeActive(index)"
-          :class="isActive == index ? 'is-active' : ''"
-        >
-          {{ firstMenu.name }}
-        </li>
-      </template>
+        <li>组件1</li>
+        <li>组件1</li>
+        <li>组件1</li>
+        <li>组件1</li>
+        <li>组件1</li>
     </ul>
-    <a href="#ddd">111111111</a>
     <!-- menu-tree -->
   </div>
 </template>
 <script>
 import { computed, getCurrentInstance } from "vue";
 import { ref, reactive, unref } from "vue"; //ref接收一个参数 返回一个响应式对象  //computed是一个函数接收一个参数是函数
-import { useStore } from "vuex";
 
 export default {
   setup() {
-    const { ctx } = getCurrentInstance();
-    // console.log(ctx.$router.options.routes);
-    // 菜单数组
-    const navList = reactive(ctx.$router.options.routes);
-    const route = unref(ctx.$router.currentRoute);
-    const ccc = route.matched.filter((item) => item.name);
-    const isActive = ref("2");
-    const store = useStore();
-
-
-    const theme = computed(() => store.state.settings.theme);
-
-    // 记录当前的菜单index
-    const olderClickIndex = ref("");
-    // 点击菜单时，样式变换，且 只能点击一次，多次点击同一个无效
-    const changeActive = (index) => {
-      if (olderClickIndex.value !== index) {
-        olderClickIndex.value = index;
-      } else {
-        return;
+    const menuList = reactive([
+      {
+        id: '001',
+        label: 'base1',
+        name: '基础组件',
+        children: []
+      },
+         {
+        id: '002',
+        label: 'base2',
+        name: '基础组件',
+        children: []
+      },
+         {
+        id: '003',
+        label: 'base3',
+        name: '基础组件',
+        children: []
+      },
+         {
+        id: '004',
+        label: 'base4',
+        name: '基础组件',
+        children: []
       }
-      isActive.value = index;
-    };
+
+
+    ])
     return {
-      navList,
-      isActive,
-      theme,
-      changeActive,
-    };
-  },
+    }
+  }
 };
 </script>
 

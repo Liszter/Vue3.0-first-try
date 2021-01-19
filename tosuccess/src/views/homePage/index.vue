@@ -1,6 +1,9 @@
 <template>
   <div>
-1
+
+     <div class="main-page">
+        1231
+     </div>
   </div>
 </template>
 
@@ -15,3 +18,8 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.main-page {
+  height: 1000px;
+}
+</style>
