@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+let arr = [1,2,3,4,5,6,7]
+function toMixArr (arr) {
+    // 获取arr 的长度
+    let len = arr.length
+    let res = []
+    for(len; len > 0; len--) {
+        // 生成len次随机整数
+        let randIndex = Math.floor(Math.random()*(len))
+
+        res.push(arr[randIndex])
+        arr.splice(randIndex, 1)
+    }
+    return res
+}
+
+console.log(toMixArr(arr))
+</script>
+</html>

@@ -4,5 +4,6 @@ import router from './router/index'
 import store from './store'
 // 引入通用样式
 import './styles/index.scss';
+import 'animate.css';
 
 createApp(App).use(router).use(store).mount('#app')
